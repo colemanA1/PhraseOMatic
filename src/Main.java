@@ -19,24 +19,32 @@ public class Main {
     public static List<String> userInput() {                //User Input Method
         Scanner scan = new Scanner(System.in);
         List<String> list = new ArrayList<String>();
-                do {
-                    System.out.println("Your words so far: \n" + list);
-                    System.out.println("Add more? (y/n)");
-                    if (scan.next().startsWith("y")) {
-                        System.out.println("Next word: ");
-                        list.add(scan.next());
-                    } else {
-                        break;
-                    }
-                } while (true);
-                String[] arr = list.toArray(new String[0]);
-                System.out.println(list);
+        do {
+            System.out.println("Your words so far: \n" + list);
+            System.out.println("Add more? (y/n)");
+            if (scan.next().startsWith("y")) {              //Loop is created because the user presses y
+                System.out.println("Next word: ");          //How do I get a number not added to the list?
+                if (scan.hasNextInt()) {
+                    System.out.println("Please don't add numbers.");
+                    scan.next();
+                    continue;
+                }
+                list.add(scan.next());
+            } else if (scan.next().startsWith("n")) {
+                break;
+            }else{
+                System.out.println("Choose y or no. ");
+            }
+        } while (true);
+        String[] arr = list.toArray(new String[0]);
+        System.out.println(list);
         return list;
     }
 
-    /**public static String userValidation(){
-    }
-    **/
+    /**
+     * public static String userValidation(){
+     * }
+     **/
     public static void main(String[] args) {
         userInput();
     }
